@@ -1,52 +1,48 @@
 package personnages;
 
-public class Gaulois {
-	
+public class Romain {
+
 	private String nom;
 	private int force;
-	private int effetPotion = 1;
-	
-	public Gaulois(String nom, int force) {
+
+	public Romain(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
-	
+
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "« " + texte + "»");
 	}
-	
+
 	private String prendreParole() {
-		return "Le gaulois " + nom + " : ";
+		return "Le romain " + nom + " : ";
 	}
-	
-	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la mâchoire de "
-		+ romain.getNom());
-		romain.recevoirCoup((force / 3)*effetPotion);
-	}
-	
-	public void boirePotion(int forcePotion) {
-		effetPotion = forcePotion;
-		parler("Merci Druide, je sens que ma force est " + forcePotion + " fois décuplée. ");
+
+	public void recevoirCoup(int forceCoup) {
+		force -= forceCoup;
+		if (force > 0) {
+			parler("Aïe");
+		} else {
+			parler("J'abandonne...");
+		}
 	}
 	
 	@Override
 	public String toString() {
-		return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion="
-		+ effetPotion + "]";
+		return "Romain [nom=" + nom + ", force=" + force + "]";
 	}
-	
+
 	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Astérix", 8);
 		Romain testboy = new Romain("TestBoy", 6);
-		System.out.println(asterix.getNom());
-		System.out.println(asterix);
-		asterix.parler("Test");
-		asterix.boirePotion(3);
-		asterix.frapper(testboy);
+		System.out.println(testboy.getNom());
+		System.out.println(testboy);
+		testboy.parler("Je suis testboy et- ");
+		testboy.recevoirCoup(3);
+		
+		
 	}
 }
