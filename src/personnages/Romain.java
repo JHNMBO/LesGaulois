@@ -8,8 +8,9 @@ public class Romain {
 	public Romain(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
+		assert force>=0 : "force négative";
 	}
-
+	
 	public String getNom() {
 		return nom;
 	}
@@ -23,12 +24,15 @@ public class Romain {
 	}
 
 	public void recevoirCoup(int forceCoup) {
+		assert forceCoup>=0 : "forceCoup négative";
+		int copie = force;
 		force -= forceCoup;
 		if (force > 0) {
 			parler("Aïe");
 		} else {
 			parler("J'abandonne...");
 		}
+		assert force<=copie : "forceCoup négative";
 	}
 	
 	@Override
@@ -37,11 +41,11 @@ public class Romain {
 	}
 
 	public static void main(String[] args) {
-		Romain testboy = new Romain("TestBoy", 6);
-		System.out.println(testboy.getNom());
-		System.out.println(testboy);
-		testboy.parler("Je suis testboy et- ");
-		testboy.recevoirCoup(3);
+		Romain minus = new Romain("Minus", 6);
+		System.out.println(minus.getNom());
+		System.out.println(minus);
+		minus.parler("Je suis testboy et- ");
+		minus.recevoirCoup(3);
 		
 		
 	}
